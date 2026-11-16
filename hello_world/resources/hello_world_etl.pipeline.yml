@@ -1,0 +1,20 @@
+# The main pipeline for hello_world
+
+resources:
+  pipelines:
+    hello_world_etl:
+      name: hello_world_etl
+      catalog: ${var.catalog}
+      schema: ${var.schema}
+      serverless: true
+      root_path: "../src/hello_world_etl"
+
+      libraries:
+        - glob:
+            include: ../src/hello_world_etl/transformations/**
+
+      environment:
+        dependencies:
+          # We include every dependency defined by pyproject.toml by defining an editable environment
+          # that points to the folder where pyproject.toml is deployed.
+          - --editable ${workspace.file_path}
