@@ -32,6 +32,8 @@ targets:
     variables:
       catalog: workspace
       schema: hello_world_dev
+    presets:
+      name_prefix: dev_${workspace.current_user.short_name}
   prod:
     mode: production
     workspace:
@@ -44,3 +46,5 @@ targets:
     permissions:
       - user_name: bartosz.papinski@capgemini.com
         level: CAN_MANAGE
+    presets:
+      name_prefix: prod_${workspace.current_user.short_name}-
