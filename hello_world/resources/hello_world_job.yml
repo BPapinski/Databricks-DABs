@@ -1,0 +1,15 @@
+resources:
+  jobs:
+    hello_world_job:
+      name: hello_world_job
+      environments:
+        - environment_key: default
+          spec:
+            environment_version: "5"
+            dependencies:
+              - ../dist/*.whl
+      tasks:
+        - task_key: hello_world_task
+          spark_python_task:
+            python_file: ../src/hello_world/hello.py
+          environment_key: default
